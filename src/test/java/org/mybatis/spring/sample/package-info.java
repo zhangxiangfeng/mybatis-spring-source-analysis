@@ -18,7 +18,7 @@
  * <ul>
  * <li>Automatic configuration with MapperScannerConfigurer</li>
  * <li>Automatic DAO creation with MapperFactoryBean</li>
- * <li>Extending SqlSessionDaoSupport to code your mapper implementation</li> 
+ * <li>Extending SqlSessionDaoSupport to code your annomapper implementation</li>
  * <li>Configuring a DAO for batch processing</li> 
  * </ul>
  */

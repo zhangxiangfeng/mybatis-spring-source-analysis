@@ -28,7 +28,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserMapper {
 
   @Override
   public User getUser(String userId) {
-    return (User) getSqlSession().selectOne("org.mybatis.spring.sample.mapper.UserMapper.getUser", userId);
+      return (User) getSqlSession().selectOne("org.mybatis.spring.sample.annomapper.UserMapper.getUser", userId);
   }
 
 }

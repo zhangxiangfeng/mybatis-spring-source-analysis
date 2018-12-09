@@ -43,7 +43,7 @@ public class DummyMapperFactoryBean<T> extends MapperFactoryBean<T> {
     super.checkDaoConfig();
     // make something more
     if (isAddToConfig()) {
-      LOGGER.debug("register mapper for interface : " + getMapperInterface());
+        LOGGER.debug("register annomapper for interface : " + getMapperInterface());
     }
   }
 

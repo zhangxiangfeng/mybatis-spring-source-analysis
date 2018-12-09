@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 /**
- * Contains classes for automatically building MyBatis mapper proxy classes at
+ * Contains classes for automatically building MyBatis annomapper proxy classes at
  * application startup.
  */
 package org.mybatis.spring.mapper;

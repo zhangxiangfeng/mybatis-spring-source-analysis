@@ -15,26 +15,21 @@
  */
 package org.mybatis.spring.mapper;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
+import com.mockrunner.mock.jdbc.MockConnection;
+import com.mockrunner.mock.jdbc.MockDataSource;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mybatis.spring.AbstractMyBatisSpringTest;
-import org.mybatis.spring.MyBatisSystemException;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.TestMapper;
+import org.mybatis.spring.*;
 import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import com.mockrunner.mock.jdbc.MockConnection;
-import com.mockrunner.mock.jdbc.MockDataSource;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public final class MapperFactoryBeanTest extends AbstractMyBatisSpringTest {
 
@@ -73,7 +68,7 @@ public final class MapperFactoryBeanTest extends AbstractMyBatisSpringTest {
     assertExecuteCount(1);
   }
 
-  // will fail because TestDao's mapper config is never loaded
+    // will fail because TestDao's annomapper config is never loaded
   @Test(expected = org.apache.ibatis.binding.BindingException.class)
   public void testAddToConfigFalse() throws Throwable {
     try {
@@ -87,7 +82,7 @@ public final class MapperFactoryBeanTest extends AbstractMyBatisSpringTest {
       SqlSessionFactory sqlSessionFactory = factoryBean.getObject();
 
       find(new SqlSessionTemplate(sqlSessionFactory), false);
-      fail("TestDao's mapper xml should not be loaded");
+        fail("TestDao's annomapper xml should not be loaded");
     } catch (MyBatisSystemException mbse) {
       // unwrap exception so the exact MyBatis exception can be tested
       throw mbse.getCause();
@@ -200,7 +195,7 @@ public final class MapperFactoryBeanTest extends AbstractMyBatisSpringTest {
   }
 
   private void find(SqlSessionTemplate sqlSessionTemplate, boolean addToConfig) throws Exception {
-    // recreate the mapper for each test since sqlSessionTemplate or the underlying
+      // recreate the annomapper for each test since sqlSessionTemplate or the underlying
     // SqlSessionFactory could change for each test
     MapperFactoryBean<TestMapper> mapper = new MapperFactoryBean<TestMapper>();
     mapper.setMapperInterface(TestMapper.class);

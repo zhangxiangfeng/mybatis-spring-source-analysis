@@ -46,14 +46,14 @@
     <!-- simplest possible SqlSessionFactory configuration -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!-- Directly specify the location of the MyBatis mapper xml file. This
+        <!-- Directly specify the location of the MyBatis annomapper xml file. This
              is NOT required when using MapperScannerConfigurer or
              MapperFactoryBean; they will load the xml automatically if it is
              in the same classpath location as the DAO interface. Rather than
              directly referencing the xml files, the 'configLocation' property
              could also be used to specify the location of a MyBatis config
              file. This config file could, in turn, contain &ltmapper&gt
-             elements that point to the correct mapper xml files.
+             elements that point to the correct annomapper xml files.
          -->
         <property name="mapperLocations" value="classpath:/org/mybatis/spring/batch/dao/*.xml" />
     </bean>

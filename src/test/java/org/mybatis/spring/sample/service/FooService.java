@@ -20,7 +20,7 @@ import org.mybatis.spring.sample.mapper.UserMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * FooService simply receives a userId and uses a mapper/dao to get a record from the database.
+ * FooService simply receives a userId and uses a annomapper/dao to get a record from the database.
  */
 @Transactional
 public class FooService {

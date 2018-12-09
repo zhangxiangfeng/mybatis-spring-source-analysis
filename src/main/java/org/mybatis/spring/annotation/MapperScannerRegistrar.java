@@ -15,10 +15,6 @@
  */
 package org.mybatis.spring.annotation;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.BeanUtils;
@@ -32,9 +28,13 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A {@link ImportBeanDefinitionRegistrar} to allow annotation configuration of
- * MyBatis mapper scanning. Using an @Enable annotation allows beans to be
+ * MyBatis annomapper scanning. Using an @Enable annotation allows beans to be
  * registered via @Component configuration, whereas implementing
  * {@code BeanDefinitionRegistryPostProcessor} will work for XML configuration.
  *

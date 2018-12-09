@@ -15,11 +15,6 @@
  */
 package org.mybatis.spring.mapper;
 
-import static org.springframework.util.Assert.notNull;
-
-import java.lang.annotation.Annotation;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.PropertyValue;
@@ -38,6 +33,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StringUtils;
+
+import java.lang.annotation.Annotation;
+import java.util.Map;
+
+import static org.springframework.util.Assert.notNull;
 
 /**
  * BeanDefinitionRegistryPostProcessor that searches recursively starting from a base package for
@@ -77,8 +77,8 @@ import org.springframework.util.StringUtils;
  *
  * <pre class="code">
  * {@code
- *   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
- *       <property name="basePackage" value="org.mybatis.spring.sample.mapper" />
+ *   <bean class="org.mybatis.spring.annomapper.MapperScannerConfigurer">
+ *       <property name="basePackage" value="org.mybatis.spring.sample.annomapper" />
  *       <!-- optional unless there are multiple session factories defined -->
  *       <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
  *   </bean>
@@ -118,7 +118,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
   private BeanNameGenerator nameGenerator;
 
   /**
-   * This property lets you set the base package for your mapper interface files.
+   * This property lets you set the base package for your annomapper interface files.
    * <p>
    * You can set more than one package by using a semicolon or comma as a separator.
    * <p>
@@ -333,7 +333,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 
       // PropertyResourceConfigurer does not expose any methods to explicitly perform
       // property placeholder substitution. Instead, create a BeanFactory that just
-      // contains this mapper scanner and post process the factory.
+        // contains this annomapper scanner and post process the factory.
       DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
       factory.registerBeanDefinition(beanName, mapperScannerBean);
 

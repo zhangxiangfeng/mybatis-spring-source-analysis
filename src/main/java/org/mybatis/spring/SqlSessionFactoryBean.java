@@ -275,12 +275,12 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
     }
 
     /**
-     * Set locations of MyBatis mapper files that are going to be merged into the {@code SqlSessionFactory}
+     * Set locations of MyBatis annomapper files that are going to be merged into the {@code SqlSessionFactory}
      * configuration at runtime.
      * <p>
      * This is an alternative to specifying "&lt;sqlmapper&gt;" entries in an MyBatis config file.
      * This property being based on Spring's resource abstraction also allows for specifying
-     * resource patterns here: e.g. "classpath*:sqlmap/*-mapper.xml".
+     * resource patterns here: e.g. "classpath*:sqlmap/*-annomapper.xml".
      */
     public void setMapperLocations(Resource[] mapperLocations) {
         this.mapperLocations = mapperLocations;
@@ -470,7 +470,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
             }
         }
 
-        if (this.databaseIdProvider != null) {//fix #64 set databaseId before parse mapper xmls
+        if (this.databaseIdProvider != null) {//fix #64 set databaseId before parse annomapper xmls
             try {
                 configuration.setDatabaseId(this.databaseIdProvider.getDatabaseId(this.dataSource));
             } catch (SQLException e) {
@@ -519,7 +519,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
                 }
 
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Parsed mapper file: '" + mapperLocation + "'");
+                    LOGGER.debug("Parsed annomapper file: '" + mapperLocation + "'");
                 }
             }
         } else {

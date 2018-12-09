@@ -20,7 +20,7 @@
     A sample context that shows how to integrate MyBatis with Spring using a
     MapperFactoryBean. With this configuration, mappers are created
     automatically but each one much be defined in the context using an
-    implementation (mapper) interface.
+    implementation (annomapper) interface.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

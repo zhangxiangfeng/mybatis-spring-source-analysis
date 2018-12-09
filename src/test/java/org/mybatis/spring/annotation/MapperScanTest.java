@@ -15,10 +15,7 @@
  */
 package org.mybatis.spring.annotation;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
+import com.mockrunner.mock.jdbc.MockDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +36,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import com.mockrunner.mock.jdbc.MockDataSource;
+import static org.junit.Assert.*;
 
 /**
  * Test for the MapperScannerRegistrar.
@@ -244,7 +241,7 @@ public final class MapperScanTest {
   }
 
   @Configuration
-  @MapperScan("org.mybatis.spring.mapper")
+  @MapperScan("org.mybatis.spring.annomapper")
   public static class AppConfigWithPackageScan {
   }
 
@@ -254,37 +251,37 @@ public final class MapperScanTest {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", markerInterface = MapperInterface.class)
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", markerInterface = MapperInterface.class)
   public static class AppConfigWithMarkerInterface {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", annotationClass = Component.class)
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", annotationClass = Component.class)
   public static class AppConfigWithAnnotation {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", annotationClass = Component.class, markerInterface = MapperInterface.class)
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", annotationClass = Component.class, markerInterface = MapperInterface.class)
   public static class AppConfigWithMarkerInterfaceAndAnnotation {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", sqlSessionTemplateRef = "sqlSessionTemplate")
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", sqlSessionTemplateRef = "sqlSessionTemplate")
   public static class AppConfigWithSqlSessionTemplate {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", sqlSessionFactoryRef = "sqlSessionFactory")
   public static class AppConfigWithSqlSessionFactory {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", nameGenerator = MapperScanTest.BeanNameGenerator.class)
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", nameGenerator = MapperScanTest.BeanNameGenerator.class)
   public static class AppConfigWithNameGenerator {
   }
 
   @Configuration
-  @MapperScan(basePackages = "org.mybatis.spring.mapper", factoryBean = DummyMapperFactoryBean.class)
+  @MapperScan(basePackages = "org.mybatis.spring.annomapper", factoryBean = DummyMapperFactoryBean.class)
   public static class AppConfigWithCustomMapperFactoryBean {
   }
 

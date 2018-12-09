@@ -15,27 +15,22 @@
  */
 package org.mybatis.spring.annotation;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.context.annotation.Import;
 
+import java.lang.annotation.*;
+
 /**
- * Use this annotation to register MyBatis mapper interfaces when using Java
+ * Use this annotation to register MyBatis annomapper interfaces when using Java
  * Config. It performs when same work as {@link MapperScannerConfigurer} via
  * {@link MapperScannerRegistrar}.
  *
  * <p>Configuration example:</p>
  * <pre class="code">
  * &#064;Configuration
- * &#064;MapperScan("org.mybatis.spring.sample.mapper")
+ * &#064;MapperScan("org.mybatis.spring.sample.annomapper")
  * public class AppConfig {
  *
  *   &#064;Bean

@@ -15,23 +15,23 @@
  */
 package org.mybatis.spring.mapper;
 
-import static org.springframework.util.Assert.notNull;
-
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.FactoryBean;
 
+import static org.springframework.util.Assert.notNull;
+
 /**
- * BeanFactory that enables injection of MyBatis mapper interfaces. It can be set up with a
+ * BeanFactory that enables injection of MyBatis annomapper interfaces. It can be set up with a
  * SqlSessionFactory or a pre-configured SqlSessionTemplate.
  * <p>
  * Sample configuration:
  *
  * <pre class="code">
  * {@code
- *   <bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
+ *   <bean id="baseMapper" class="org.mybatis.spring.annomapper.MapperFactoryBean" abstract="true" lazy-init="true">
  *     <property name="sqlSessionFactory" ref="sqlSessionFactory" />
  *   </bean>
  *
@@ -79,7 +79,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
       try {
         configuration.addMapper(this.mapperInterface);
       } catch (Exception e) {
-        logger.error("Error while adding the mapper '" + this.mapperInterface + "' to configuration.", e);
+          logger.error("Error while adding the annomapper '" + this.mapperInterface + "' to configuration.", e);
         throw new IllegalArgumentException(e);
       } finally {
         ErrorContext.instance().reset();
@@ -114,16 +114,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
   //------------- mutators --------------
 
   /**
-   * Sets the mapper interface of the MyBatis mapper
-   *
-   * @param mapperInterface class of the interface
-   */
-  public void setMapperInterface(Class<T> mapperInterface) {
-    this.mapperInterface = mapperInterface;
-  }
-
-  /**
-   * Return the mapper interface of the MyBatis mapper
+   * Return the annomapper interface of the MyBatis annomapper
    *
    * @return class of the interface
    */
@@ -132,10 +123,29 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
   }
 
   /**
-   * If addToConfig is false the mapper will not be added to MyBatis. This means
+   * Sets the annomapper interface of the MyBatis annomapper
+   *
+   * @param mapperInterface class of the interface
+   */
+  public void setMapperInterface(Class<T> mapperInterface) {
+      this.mapperInterface = mapperInterface;
+  }
+
+    /**
+     * Return the flag for addition into MyBatis config.
+     *
+     * @return true if the annomapper will be added to MyBatis in the case it is not already
+     * registered.
+     */
+    public boolean isAddToConfig() {
+        return addToConfig;
+    }
+
+    /**
+     * If addToConfig is false the annomapper will not be added to MyBatis. This means
    * it must have been included in mybatis-config.xml.
-   * <p/>
-   * If it is true, the mapper will be added to MyBatis in the case it is not already
+     * <p/>
+     * If it is true, the annomapper will be added to MyBatis in the case it is not already
    * registered.
    * <p/>
    * By default addToCofig is true.
@@ -144,15 +154,5 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
    */
   public void setAddToConfig(boolean addToConfig) {
     this.addToConfig = addToConfig;
-  }
-
-  /**
-   * Return the flag for addition into MyBatis config.
-   *
-   * @return true if the mapper will be added to MyBatis in the case it is not already
-   * registered.
-   */
-  public boolean isAddToConfig() {
-    return addToConfig;
   }
 }

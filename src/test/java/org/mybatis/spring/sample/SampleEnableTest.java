@@ -31,7 +31,7 @@ public class SampleEnableTest extends AbstractSampleTest {
 
 	@Configuration
 	@ImportResource("classpath:org/mybatis/spring/sample/config/applicationContext-infrastructure.xml")
-	@MapperScan("org.mybatis.spring.sample.mapper")
+    @MapperScan("org.mybatis.spring.sample.annomapper")
 	static class AppConfig {
 	}
 }

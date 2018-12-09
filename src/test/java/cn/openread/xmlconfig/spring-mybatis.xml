@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="cn.openread.MyBatisHikariDataSource"
+          destroy-method="close">
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://mysql.cloud.openread.cn:2206/test_db?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="test_user"/>
+        <property name="password" value="test_user123"/>
+        <property name="autoCommit" value="false"/>
+        <property name="transactionIsolation" value="TRANSACTION_REPEATABLE_READ"/>
+        <property name="minimumIdle" value="5"/>
+        <property name="maximumPoolSize" value="10"/>
+        <property name="poolName" value="simon-hikari-datasource"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.openread.annomapper"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="mapperLocations" value="classpath*:mybatis/UserMapper.xml" />-->
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+</beans>

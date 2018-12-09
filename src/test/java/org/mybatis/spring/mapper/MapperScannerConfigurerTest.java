@@ -15,11 +15,7 @@
  */
 package org.mybatis.spring.mapper;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
-
-import java.util.Properties;
-
+import com.mockrunner.mock.jdbc.MockDataSource;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.After;
@@ -38,7 +34,10 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.mockrunner.mock.jdbc.MockDataSource;
+import java.util.Properties;
+
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
 
 public final class MapperScannerConfigurerTest {
   private GenericApplicationContext applicationContext;
@@ -47,12 +46,12 @@ public final class MapperScannerConfigurerTest {
   public void setupContext() {
     applicationContext = new GenericApplicationContext();
 
-    // add the mapper scanner as a bean definition rather than explicitly setting a
+      // add the annomapper scanner as a bean definition rather than explicitly setting a
     // postProcessor on the context so initialization follows the same code path as reading from
     // an XML config file
     GenericBeanDefinition definition = new GenericBeanDefinition();
     definition.setBeanClass(MapperScannerConfigurer.class);
-    definition.getPropertyValues().add("basePackage", "org.mybatis.spring.mapper");
+      definition.getPropertyValues().add("basePackage", "org.mybatis.spring.annomapper");
     applicationContext.registerBeanDefinition("mapperScanner", definition);
 
     setupSqlSessionFactory("sqlSessionFactory");
@@ -235,7 +234,7 @@ public final class MapperScannerConfigurerTest {
     definition.getPropertyValues().add("configLocation", "${configLocationProperty}");
 
     Properties props = new java.util.Properties();
-    props.put("basePackageProperty", "org.mybatis.spring.mapper");
+      props.put("basePackageProperty", "org.mybatis.spring.annomapper");
     props.put("configLocationProperty", "classpath:org/mybatis/spring/mybatis-config.xml");
 
     GenericBeanDefinition propertyDefinition = new GenericBeanDefinition();
