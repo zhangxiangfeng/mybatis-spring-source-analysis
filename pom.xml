@@ -115,10 +115,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
-
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

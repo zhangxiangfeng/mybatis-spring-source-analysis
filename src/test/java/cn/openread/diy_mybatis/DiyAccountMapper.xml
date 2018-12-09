@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- namespace 当基于XML进行配置的时候是根据namespace+id来拼接进行SQL操作 -->
+<mapper namespace="cn.openread.diy_mybatis.DiyAccountMapper">
+    <!-- select 查询 -->
+    <select id="getByTableId" resultType="cn.openread.Account">
+        select *
+        from test_table where tableId=%d
+    </select>
+</mapper>
